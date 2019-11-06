@@ -1,7 +1,7 @@
 module.exports = async () => {
     const Order = require('../aws-scrapper/Order')
     let order = new Order({
-        cookie: config.sc_cookie11
+        cookie: config.sc_cookie
     })
     
     let resultList = []
