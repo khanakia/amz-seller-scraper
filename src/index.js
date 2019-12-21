@@ -51,15 +51,15 @@ let main = async () => {
         useUnifiedTopology: true
     })
     App.db = App.dbConn.db(config.db_name)
-    app.listen(config.port, () => console.log(`Example app listening on port ${config.port}!`))
+    // app.listen(config.port, () => console.log(`Example app listening on port ${config.port}!`))
 
-    // OrderImport().then((result) => {
-    //     console.log('respspssp')
-    //     // return res.send(result)
-    // }).catch((err) => {
-    //     console.log(err)
-    //     // return res.send(err)
-    // })
+    OrderImport().then((result) => {
+        console.log('respspssp')
+        // return res.send(result)
+    }).catch((err) => {
+        console.log(err)
+        // return res.send(err)
+    })
 }
 
 main()

@@ -36,6 +36,8 @@ class ProductSc {
 
 
 			const response = await rp(options)
+			if(typeof response=="string") return {} // returned some 404 or html not the json
+			// console.log(typeof response)
 			const result = this.parseReconciledDetails(response)
 			return result
 		} catch (error) {
@@ -43,13 +45,15 @@ class ProductSc {
 			return {
 				error: {
 					message: 'Server error.',
-					detail: error.toString()
+					// detail: error.toString()
 				}
 			}
 		}
 	}
 
 	async parseReconciledDetails(data) {
+		// console.log(data)
+		// if(undefined==data || !data) return {}
 		let objOriginal = data['detailPageListingResponse']
 		let result = {}
 		Object.keys(objOriginal).forEach(function (key) {

@@ -35,7 +35,7 @@ class ProductPublic {
             const result = await this._getHtml(uri)
             return result
         } catch (error) {
-            console.log(error)
+            console.log(asin + ' Not found. Code:' +error.statusCode)
             return ''
         }
     }
@@ -73,7 +73,9 @@ class ProductPublic {
             } else {
                 product['unqualifiedBuyBox'] = false
                 product['soldBySeller'] = $('#merchant-info a').text()
-                product['soldBySellerLink'] = 'https://www.amazon.in' + $('#merchant-info a').attr('href')
+
+                let href = $('#merchant-info a').attr('href')
+                product['soldBySellerLink'] = undefined!==href ? 'https://www.amazon.in' + href : null
                 const _offersCount = $('#olp_feature_div a').text()
                 product['offersCount'] = this.extractInt(_offersCount)
                 product['ourPrice'] =  this.extractInt($('#priceblock_ourprice').text().trim())
@@ -87,7 +89,7 @@ class ProductPublic {
             // product['metaDesc'] = $('meta[name="description"]').attr('content')
             // product['metaKeywords'] = $('meta[name="keywords"]').attr('content')
             product['reviewCount'] = this.extractInt($('#acrCustomerReviewText').text())
-            product['categoryId'] = $('input#nodeID').val()
+            product['categoryId'] = undefined!==$('input#nodeID').val() ? $('input#nodeID').val() : null
     
             let breadcrumb = []
             $('#wayfinding-breadcrumbs_feature_div ul li a').each((i, elem) => {

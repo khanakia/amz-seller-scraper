@@ -13,8 +13,8 @@ class Order {
         qs = Object.assign({}, {
             limit: '100',
             offset: '0',
-            sort: 'order_date_asc',
-            'date-range': '1493577000000-1572632999000',
+            sort: 'ship_by_asc',
+            'date-range': '1483209000000-1572719399000',
             fulfillmentType: 'mfn',
             orderStatus: 'shipped',
             forceOrdersTableRefreshTrigger: 'false' 
